@@ -21,7 +21,8 @@
     "url": "https://github.com/bioturing/logicle-js/issues"
   },
   "homepage": "https://github.com/bioturing/logicle-js#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "nan": "^2.14.2"
   }
 }

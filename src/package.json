@@ -1,0 +1,24 @@
+{
+  "name": "logicle-js",
+  "version": "1.0.0",
+  "description": "Javascript version of the flowCore package",
+  "main": "exports.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bioturing/logicle-js.git"
+  },
+  "keywords": [
+    "flow-cytometry"
+  ],
+  "author": "Hao Tran",
+  "license": "Apache-2.0",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/bioturing/logicle-js/issues"
+  },
+  "homepage": "https://github.com/bioturing/logicle-js#readme"
+}

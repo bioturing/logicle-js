@@ -1,5 +1,5 @@
 {
-  "name": "logicle-js",
+  "name": "logicle-trans",
   "version": "1.0.0",
   "description": "Javascript version of the flowCore package",
   "main": "exports.js",

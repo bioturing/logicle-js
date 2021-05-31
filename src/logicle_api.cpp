@@ -12,46 +12,36 @@ using namespace std;
 
 std::string getStringFromObj(const Local<Object> obj, const char *name)
 {
-	Local<String> item = Nan::New<String>(name).ToLocalChecked();
-	Local<Value> value = obj->Get(Nan::GetCurrentContext(), item).ToLocalChecked();
+	Local<String> key = Nan::New<String>(name).ToLocalChecked();
+	Local<Value> value = Nan::Get(obj, key).ToLocalChecked();
 	return *(Nan::Utf8String(value));
 }
 
 int getIntFromObj(const Local<Object> obj, const char *name)
 {
-	Local<String> item = Nan::New<String>(name).ToLocalChecked();
-	Local<Value> value = obj->Get(Nan::GetCurrentContext(), item).ToLocalChecked();
-	return value->Int32Value(Nan::GetCurrentContext()).FromJust();
+	Local<String> key = Nan::New<String>(name).ToLocalChecked();
+	Local<Value> value = Nan::Get(obj, key).ToLocalChecked();
+	return Nan::To<int>(value).FromJust();
 }
 
 double getDoubleFromObj(const Local<Object> obj, const char *name)
 {
-	Local<String> item = Nan::New<String>(name).ToLocalChecked();
-	Local<Value> value = obj->Get(Nan::GetCurrentContext(), item).ToLocalChecked();
-	return value->NumberValue(Nan::GetCurrentContext()).FromJust();
+	Local<String> key = Nan::New<String>(name).ToLocalChecked();
+	Local<Value> value = Nan::Get(obj, key).ToLocalChecked();
+	return Nan::To<double>(value).FromJust();
 }
 
 vector<double> getDoubleArrayFromObj(const Local<Object> obj, const char *name)
 {
-	Local<String> item = Nan::New<String>(name).ToLocalChecked();
-	Local<v8::Array> array = Local<v8::Array>::Cast(obj->Get(Nan::GetCurrentContext(), item).ToLocalChecked());
-	int length = array->Get(Nan::New<String>("length").ToLocalChecked())->Int32Value(Nan::GetCurrentContext()).FromJust();
+	Local<String> key = Nan::New<String>(name).ToLocalChecked();
+	Local<Array> array = Local<Array>::Cast(Nan::Get(obj, key).ToLocalChecked());
+	int length = array->Length();
 	vector<double> res(length);
 	for (int i = 0; i < length; ++i) {
-		Local<Value> value = array->Get(i);
-		res[i] = value->NumberValue(Nan::GetCurrentContext()).FromJust();
+		Local<Value> value = Nan::Get(array, i).ToLocalChecked();
+		res[i] = Nan::To<double>(value).FromJust();
 	}
 	return res;
-}
-
-std::string getArgvString(const Local<Value> &argv)
-{
-	return *(Nan::Utf8String(Nan::To<String>(argv).ToLocalChecked()));
-}
-
-int32_t getArgvNumber(const Local<Value> &argv)
-{
-	return argv->Int32Value(Nan::GetCurrentContext()).FromJust();
 }
 
 NAN_METHOD(api_logicle_transform)
@@ -75,7 +65,7 @@ NAN_METHOD(api_logicle_transform)
 	}
 	Local<v8::Array> array = New<v8::Array>(res.size());
 	for (unsigned long int i = 0; i < res.size(); ++i)
-		Nan::Set(array, i, Nan::New(res[i]));
+		Nan::Set(array, (uint32_t) i, Nan::New(res[i]));
 	info.GetReturnValue().Set(array);
 }
 
@@ -100,7 +90,7 @@ NAN_METHOD(api_hyperlog_transform)
 	}
 	Local<v8::Array> array = New<v8::Array>(res.size());
 	for (unsigned long int i = 0; i < res.size(); ++i)
-		Nan::Set(array, i, Nan::New(res[i]));
+		Nan::Set(array, (uint32_t) i, Nan::New(res[i]));
 	info.GetReturnValue().Set(array);
 }
 
@@ -125,7 +115,7 @@ NAN_METHOD(api_fast_logicle_transform)
 	}
 	Local<v8::Array> array = New<v8::Array>(res.size());
 	for (unsigned long int i = 0; i < res.size(); ++i)
-		Nan::Set(array, i, Nan::New(res[i]));
+		Nan::Set(array, (uint32_t) i, Nan::New(res[i]));
 	info.GetReturnValue().Set(array);
 }
 

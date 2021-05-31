@@ -10,7 +10,9 @@ Logicle is a transformation method which aims to give a better visualization of 
 Those are the actual parameters that will be chosen by the user and passed to the functions of this package.
 
 # Installation
-npm install logicle-trans
+```bash
+$ npm install logicle-trans
+```
 
 # Usage
 ```javascript

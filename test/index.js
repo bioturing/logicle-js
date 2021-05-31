@@ -1,4 +1,4 @@
-const api = require("logicle-js");
+const api = require("logicle-trans");
 
 console.log(api.LogicleTransform([1, 0.2, 0.61], 262144, 4.5, 0, 0, true));
 console.log(api.FastLogicleTransform([1, 2, 3], 262144, 4.5, 0, 0));

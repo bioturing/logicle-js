@@ -24,5 +24,21 @@
   "devDependencies": {},
   "dependencies": {
     "nan": "^2.14.2"
-  }
+  },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "binding.gyp",
+    "exports.js",
+    "fast_logicle.cpp",
+    "hyperlog.cpp",
+    "hyperlog.h",
+    "logicle.cpp",
+    "logicle.h",
+    "logicle_api.cpp",
+    "logicle_api.h",
+    "package.json",
+    "transform_functions.cpp",
+    "transform_functions.h"
+  ]
 }
